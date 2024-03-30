@@ -2,10 +2,11 @@ version: '3'
 services:
   nodejs:
     build: 
-      context: .
+      context: ./service
       dockerfile: Dockerfile
     image: pedrohsoaress/nodejs
     container_name: nodejs
+    tty: true
     ports:
       - "3000:3000"
     depends_on:
@@ -17,6 +18,8 @@ services:
       DB_USER: root
       DB_PASSWORD: root
       DB_NAME: nodedb
+    volumes:
+      - ./service:/usr/src/app
     networks:
       - node-network
       
